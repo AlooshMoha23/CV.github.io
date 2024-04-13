@@ -4,31 +4,5 @@
 
 <h2>Create a Cookie</h2>
 
-<button onclick="createCookie()">Create Cookie</button>
-
-<h2>Browser Information</h2>
-
-<p id="info"></p>
-
-<script>
-function createCookie() {
-  document.cookie = "username=John Doe; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
-  alert("Cookie Created!");
-}
-
-window.onload = function() {
-  var info = "Browser CodeName: " + navigator.appCodeName + "<br>" +
-             "Browser Name: " + navigator.appName + "<br>" +
-             "Browser Version: " + navigator.appVersion + "<br>" +
-             "Cookies Enabled: " + navigator.cookieEnabled + "<br>" +
-             "Browser Language: " + navigator.language + "<br>" +
-             "Browser Online: " + navigator.onLine + "<br>" +
-             "Platform: " + navigator.platform + "<br>" +
-             "User-agent header: " + navigator.userAgent;
-
-  document.getElementById("info").innerHTML = info;
-}
-</script>
-
 </body>
 </html>
