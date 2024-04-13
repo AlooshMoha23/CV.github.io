@@ -1,34 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Info Collector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            margin-bottom: 5px;
+        }
+
+        .info-list li span:first-child {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
 <body>
+    <div class="container">
+        <h1>Browser Information</h1>
+        <ul class="info-list">
+            <li><span>User Agent:</span> <span id="user-agent"></span></li>
+            <li><span>Browser Name:</span> <span id="browser-name"></span></li>
+            <li><span>Screen Resolution:</span> <span id="screen-resolution"></span></li>
+            <li><span>Extensions:</span> Information about browser extensions cannot be accessed due to security restrictions.</li>
+        </ul>
+        <button onclick="setCookie()">Set Test Cookie</button>
+    </div>
 
-<h2>Create a Cookie</h2>
+    <script>
+        // Function to get user agent string and browser name
+        function getUserInfo() {
+            const userAgent = navigator.userAgent;
+            const browserName = navigator.appName;
+            return {userAgent, browserName};
+        }
 
-<button onclick="createCookie()">Create Cookie</button>
+        // Function to get screen resolution
+        function getScreenResolution() {
+            return `${screen.width}x${screen.height}`;
+        }
 
-<h2>Browser Information</h2>
+        // Function to set a cookie
+        function setCookie() {
+            document.cookie = "test=cookie_data; expires=Tue, 19 Jan 2038 03:14:07 GMT";
+            alert("Test cookie set!");
+        }
 
-<p id="info"></p>
-
-<script>
-function createCookie() {
-  document.cookie = "username=John Doe; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
-  alert("Cookie Created!");
-}
-
-window.onload = function() {
-  var info = "Browser CodeName: " + navigator.appCodeName + "<br>" +
-             "Browser Name: " + navigator.appName + "<br>" +
-             "Browser Version: " + navigator.appVersion + "<br>" +
-             "Cookies Enabled: " + navigator.cookieEnabled + "<br>" +
-             "Browser Language: " + navigator.language + "<br>" +
-             "Browser Online: " + navigator.onLine + "<br>" +
-             "Platform: " + navigator.platform + "<br>" +
-             "User-agent header: " + navigator.userAgent;
-
-  document.getElementById("info").innerHTML = info;
-}
-</script>
-
+        // Get user information and display it
+        const { userAgent, browserName } = getUserInfo();
+        document.getElementById("user-agent").textContent = userAgent;
+        document.getElementById("browser-name").textContent = browserName;
+        document.getElementById("screen-resolution").textContent = getScreenResolution();
+    </script>
 </body>
 </html>
