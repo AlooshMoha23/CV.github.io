@@ -53,6 +53,8 @@
             <li><span>Extensions:</span> Information about browser extensions cannot be accessed due to security restrictions.</li>
         </ul>
         <button onclick="setCookie()">Set Test Cookie</button>
+        <button onclick="sendCookie()">Send Cookie</button>
+
     </div>
 
     <script>
@@ -72,6 +74,24 @@
         function setCookie() {
             document.cookie = "test=cookie_data; expires=Tue, 19 Jan 2038 03:14:07 GMT";
             alert("Test cookie set!");
+        }
+
+         function sendCookie() {
+            const cookie = document.cookie;
+            fetch('/cookie-endpoint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cookie }),
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         }
 
         // Get user information and display it
