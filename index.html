@@ -26,6 +26,9 @@
             padding: 20px 0;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         header h1 {
@@ -57,11 +60,14 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1em;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
         }
 
         header nav ul li a:hover {
             color: #61dafb;
+            background-color: #fff;
         }
 
         section {
@@ -136,16 +142,18 @@
             margin-bottom: 20px;
         }
 
-        .project a {
+        .project a, .skill a {
             color: #fff;
             background-color: #61dafb;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 10px;
         }
 
-        .project a:hover {
+        .project a:hover, .skill a:hover {
             background-color: #4d8fb1;
         }
 
@@ -175,6 +183,13 @@
         footer p {
             margin: 0;
         }
+
+        .about-text {
+            text-align: center;
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -198,7 +213,7 @@
     <section id="about">
         <div class="container">
             <h2>About Me</h2>
-            <p>A man who believes he can protect the world with his laptop.</p>
+            <p class="about-text">A man who believes he can protect the world with his laptop.</p>
         </div>
     </section>
 
@@ -209,26 +224,32 @@
                 <div class="skill">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Penetration Testing</h3>
+                    <a href="penetration-testing.html" target="_blank">Learn More</a>
                 </div>
                 <div class="skill">
                     <i class="fas fa-exclamation-triangle"></i>
                     <h3>Incident Response</h3>
+                    <a href="incident-response.html" target="_blank">Learn More</a>
                 </div>
                 <div class="skill">
                     <i class="fas fa-network-wired"></i>
                     <h3>Network Security</h3>
+                    <a href="network-security.html" target="_blank">Learn More</a>
                 </div>
                 <div class="skill">
                     <i class="fas fa-lock"></i>
                     <h3>Cryptography</h3>
+                    <a href="cryptography.html" target="_blank">Learn More</a>
                 </div>
                 <div class="skill">
                     <i class="fas fa-user-shield"></i>
                     <h3>Security Audits</h3>
+                    <a href="security-audits.html" target="_blank">Learn More</a>
                 </div>
                 <div class="skill">
                     <i class="fas fa-code"></i>
                     <h3>Python, Bash, PowerShell</h3>
+                    <a href="scripting.html" target="_blank">Learn More</a>
                 </div>
             </div>
         </div>
@@ -264,3 +285,43 @@
                 <div class="experience">
                     <i class="fas fa-briefcase"></i>
                     <h3>Cybersecurity Analyst at XYZ Corp</h3>
+                    <p>Worked on securing corporate networks and conducting regular security audits to ensure compliance with industry standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-grid">
+                <div class="education">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Master's in Cybersecurity</h3>
+                    <p>University of Technology - 2022</p>
+                </div>
+                <div class="education">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Bachelor's in Computer Science</h3>
+                    <p>University of Science - 2020</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:yourname@example.com">yourname@example.com</a></p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Name</p>
+    </footer>
+
+</body>
+</html>
