@@ -5,61 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name | Cybersecurity Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
     <header>
-        <h1>Your Name</h1>
-        <p>Cybersecurity Professional | Penetration Tester | Security Analyst</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>Your Name</h1>
+            <p>Cybersecurity Professional | Penetration Tester | Security Analyst</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome to my cybersecurity portfolio. I am passionate about protecting data, systems, and networks from unauthorized access and attacks.</p>
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Welcome to my cybersecurity portfolio. I am passionate about protecting data, systems, and networks from unauthorized access and attacks.</p>
+        </div>
     </section>
 
     <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Penetration Testing</li>
-            <li>Incident Response</li>
-            <li>Network Security</li>
-            <li>Cryptography</li>
-            <li>Security Audits</li>
-            <li>Python, Bash, PowerShell</li>
-        </ul>
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Penetration Testing</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Incident Response</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Network Security</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-lock"></i>
+                    <h3>Cryptography</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>Security Audits</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-code"></i>
+                    <h3>Python, Bash, PowerShell</h3>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Project 1: Vulnerability Assessment</h3>
-            <p>Conducted a comprehensive vulnerability assessment for a financial institution, identifying critical vulnerabilities and providing remediation steps.</p>
-            <a href="https://github.com/yourusername/project1" target="_blank">View Project</a>
-        </div>
-        <div class="project">
-            <h3>Project 2: Incident Response</h3>
-            <p>Managed the response to a ransomware attack, successfully containing the threat and restoring systems with minimal data loss.</p>
-            <a href="https://github.com/yourusername/project2" target="_blank">View Project</a>
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project">
+                    <h3>Vulnerability Assessment</h3>
+                    <p>Conducted a comprehensive vulnerability assessment for a financial institution, identifying critical vulnerabilities and providing remediation steps.</p>
+                    <a href="https://github.com/yourusername/project1" target="_blank">View Project</a>
+                </div>
+                <div class="project">
+                    <h3>Incident Response</h3>
+                    <p>Managed the response to a ransomware attack, successfully containing the threat and restoring systems with minimal data loss.</p>
+                    <a href="https://github.com/yourusername/project2" target="_blank">View Project</a>
+                </div>
+                <div class="project">
+                    <h3>Malware Analysis</h3>
+                    <p>Analyzed a sample of ransomware, reverse engineering its code to understand its behavior and develop mitigation strategies.</p>
+                    <a href="https://github.com/yourusername/project3" target="_blank">View Project</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">Your LinkedIn Profile</a></p>
-        <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">Your LinkedIn Profile</a></p>
+                <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
