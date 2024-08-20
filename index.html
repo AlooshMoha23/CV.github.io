@@ -100,49 +100,63 @@
             margin: 0 auto;
         }
 
-        .skills-grid, .project-grid, .experience-grid, .education-grid {
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 40px;
         }
 
-        .skill, .project, .experience, .education {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .skill {
+            perspective: 1000px;
+        }
+
+        .skill-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
 
-        .skill:hover, .project:hover, .experience:hover, .education:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        .skill-front, .skill-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
         }
 
-        .skill i, .experience i, .education i {
+        .skill-front {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+        }
+
+        .skill-back {
+            background-color: #61dafb;
+            color: #fff;
+            transform: rotateY(180deg);
+            padding: 20px;
+        }
+
+        .skill.flipped .skill-inner {
+            transform: rotateY(180deg);
+        }
+
+        .skill i {
             font-size: 3em;
             color: #61dafb;
             margin-bottom: 10px;
         }
 
-        .skill h3, .experience h3, .education h3 {
+        .skill h3 {
             font-size: 1.5em;
             margin-bottom: 10px;
         }
 
-        .project h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .project p, .experience p, .education p {
-            font-size: 1em;
-            margin-bottom: 20px;
-        }
-
-        .project a, .skill a {
+        .skill a {
             color: #fff;
             background-color: #61dafb;
             padding: 10px 20px;
@@ -153,8 +167,20 @@
             margin-top: 10px;
         }
 
-        .project a:hover, .skill a:hover {
+        .skill a:hover {
             background-color: #4d8fb1;
+        }
+
+        .navigation {
+            margin-top: 20px;
+        }
+
+        .arrow-left, .arrow-right {
+            cursor: pointer;
+            font-size: 1.5em;
+            margin: 0 10px;
+            color: #fff;
+            user-select: none;
         }
 
         .contact-info {
@@ -195,7 +221,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Ali BA FAQAS </h1>
+            <h1>Ali BA FAQAS</h1>
             <p>Cybersecurity Professional | Security Analyst | Incident Responder</p>
             <nav>
                 <ul>
@@ -222,88 +248,67 @@
             <h2>Skills</h2>
             <div class="skills-grid">
                 <div class="skill">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h3>Incident Response</h3>
-                    <a href="incident-response.html" target="_blank">Learn More</a>
+                    <div class="skill-inner">
+                        <div class="skill-front">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Incident Response</h3>
+                            <a href="#" class="learn-more">Learn More</a>
+                        </div>
+                        <div class="skill-back">
+                            <div class="skill-content">
+                                <h3>Incident Response</h3>
+                                <p>Details about incident response and how it's handled.</p>
+                                <p class="more-info" data-index="1">More details...</p>
+                                <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
+                                <div class="navigation">
+                                    <span class="arrow-left">&larr;</span>
+                                    <span class="arrow-right">&rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="skill">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>Network Security</h3>
-                    <a href="network-security.html" target="_blank">Learn More</a>
+                    <div class="skill-inner">
+                        <div class="skill-front">
+                            <i class="fas fa-network-wired"></i>
+                            <h3>Network Security</h3>
+                            <a href="#" class="learn-more">Learn More</a>
+                        </div>
+                        <div class="skill-back">
+                            <div class="skill-content">
+                                <h3>Network Security</h3>
+                                <p>Details about securing networks, protocols, and configurations.</p>
+                                <p class="more-info" data-index="1">More details...</p>
+                                <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
+                                <div class="navigation">
+                                    <span class="arrow-left">&larr;</span>
+                                    <span class="arrow-right">&rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="skill">
-                    <i class="fas fa-lock"></i>
-                    <h3>Cryptography</h3>
-                    <a href="cryptography.html" target="_blank">Learn More</a>
-                </div>
-                <div class="skill">
-                    <i class="fas fa-user-shield"></i>
-                    <h3>Security Audits</h3>
-                    <a href="security-audits.html" target="_blank">Learn More</a>
-                </div>
-                <div class="skill">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Penetration Testing</h3>
-                    <a href="penetration-testing.html" target="_blank">Learn More</a>
-                </div>
-                <div class="skill">
-                    <i class="fas fa-search"></i>
-                    <h3>Forensics</h3>
-                    <a href="scripting.html" target="_blank">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project">
-                    <h3>Vulnerability Assessment</h3>
-                    <p>Conducted a comprehensive vulnerability assessment for a financial institution, identifying critical vulnerabilities and providing remediation steps.</p>
-                    <a href="https://github.com/yourusername/project1" target="_blank">View Project</a>
-                </div>
-                <div class="project">
-                    <h3>Incident Response</h3>
-                    <p>Managed the response to a ransomware attack, successfully containing the threat and restoring systems with minimal data loss.</p>
-                    <a href="https://github.com/yourusername/project2" target="_blank">View Project</a>
-                </div>
-                <div class="project">
-                    <h3>Malware Analysis</h3>
-                    <p>Analyzed a sample of ransomware, reverse engineering its code to understand its behavior and develop mitigation strategies.</p>
-                    <a href="https://github.com/yourusername/project3" target="_blank">View Project</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="experience-grid">
-                <div class="experience">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Cybersecurity Analyst at XYZ Corp</h3>
-                    <p>Worked on securing corporate networks and conducting regular security audits to ensure compliance with industry standards.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-grid">
-                <div class="education">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Master's in Cybersecurity</h3>
-                    <p>University of Technology - 2022</p>
-                </div>
-                <div class="education">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Bachelor's in Computer Science</h3>
-                    <p>University of Science - 2020</p>
+                    <div class="skill-inner">
+                        <div class="skill-front">
+                            <i class="fas fa-lock"></i>
+                            <h3>Cryptography</h3>
+                            <a href="#" class="learn-more">Learn More</a>
+                        </div>
+                        <div class="skill-back">
+                            <div class="skill-content">
+                                <h3>Cryptography</h3>
+                                <p>Details about encryption, decryption, and secure communications.</p>
+                                <p class="more-info" data-index="1">More details...</p>
+                                <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
+                                <div class="navigation">
+                                    <span class="arrow-left">&larr;</span>
+                                    <span class="arrow-right">&rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -313,15 +318,43 @@
         <div class="container">
             <h2>Contact</h2>
             <div class="contact-info">
-                <p>Email: <a href="mailto:yourname@example.com">yourname@example.com</a></p>
-                <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a></p>
+                <p>Email: <a href="mailto:aliba@cybersecurity.com">aliba@cybersecurity.com</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/alibafaqas" target="_blank">linkedin.com/in/alibafaqas</a></p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Your Name</p>
+        <div class="container">
+            <p>&copy; 2024 Ali BA FAQAS. All rights reserved.</p>
+        </div>
     </footer>
 
+    <script>
+        document.querySelectorAll('.learn-more').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const skill = this.closest('.skill');
+                skill.classList.toggle('flipped');
+            });
+        });
+
+        document.querySelectorAll('.arrow-left, .arrow-right').forEach(arrow => {
+            arrow.addEventListener('click', function() {
+                const content = this.closest('.skill-content');
+                const items = content.querySelectorAll('.more-info');
+                let currentIndex = Array.from(items).findIndex(item => item.style.display !== 'none');
+                items[currentIndex].style.display = 'none';
+
+                if (this.classList.contains('arrow-right')) {
+                    currentIndex = (currentIndex + 1) % items.length;
+                } else {
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                }
+
+                items[currentIndex].style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
