@@ -192,50 +192,62 @@
         }
 
 .skill {
-    background-color: #fff;
+    perspective: 1000px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.skill-front, .skill-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
+    transition: transform 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.skill h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
+.skill-front {
+    background-color: #fff;
 }
 
-.skill p {
-    font-size: 1em;
-    margin-bottom: 20px;
+.skill-back {
+    background-color: #61dafb;
+    color: #fff;
+    transform: rotateY(180deg);
 }
 
-.skill:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+.skill.flipped .skill-front {
+    transform: rotateY(-180deg);
 }
 
-.skill .skill-inner {
-    display: none;
-    text-align: center;
+.skill.flipped .skill-back {
+    transform: rotateY(0deg);
 }
 
-.skill:hover .skill-inner {
-    display: block;
-}
-
-.navigation {
-    margin-top: 10px;
-}
-
-.arrow-left, .arrow-right {
+.flip-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #61dafb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1.5em;
-    margin: 0 10px;
-    color: #61dafb;
-    user-select: none;
+    transition: background-color 0.3s ease;
 }
+
+.flip-button:hover {
+    background-color: #4d8fb1;
+}
+
 
     </style>
 </head>
@@ -264,56 +276,46 @@
         </div>
     </section>
 
-    <section id="skills">
+   <section id="skills">
     <div class="container">
         <h2>Skills</h2>
         <div class="skills-grid">
             <div class="skill">
-                <h3>Incident Response</h3>
-                <p>Details about incident response and how it's handled.</p>
-                <div class="skill-inner">
-                    <div class="skill-content">
-                        <p class="more-info" data-index="1">More details...</p>
-                        <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
-                        <div class="navigation">
-                            <span class="arrow-left">&larr;</span>
-                            <span class="arrow-right">&rarr;</span>
-                        </div>
-                    </div>
+                <div class="skill-front">
+                    <h3>Incident Response</h3>
+                    <button class="flip-button">Learn More</button>
+                </div>
+                <div class="skill-back">
+                    <h3>Incident Response</h3>
+                    <p>Details about incident response and how it's handled.</p>
+                    <button class="flip-button">Go Back</button>
                 </div>
             </div>
             <div class="skill">
-                <h3>Network Security</h3>
-                <p>Details about securing networks, protocols, and configurations.</p>
-                <div class="skill-inner">
-                    <div class="skill-content">
-                        <p class="more-info" data-index="1">More details...</p>
-                        <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
-                        <div class="navigation">
-                            <span class="arrow-left">&larr;</span>
-                            <span class="arrow-right">&rarr;</span>
-                        </div>
-                    </div>
+                <div class="skill-front">
+                    <h3>Network Security</h3>
+                    <button class="flip-button">Learn More</button>
+                </div>
+                <div class="skill-back">
+                    <h3>Network Security</h3>
+                    <p>Details about securing networks, protocols, and configurations.</p>
+                    <button class="flip-button">Go Back</button>
                 </div>
             </div>
             <div class="skill">
-                <h3>Cryptography</h3>
-                <p>Details about encryption, decryption, and secure communications.</p>
-                <div class="skill-inner">
-                    <div class="skill-content">
-                        <p class="more-info" data-index="1">More details...</p>
-                        <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
-                        <div class="navigation">
-                            <span class="arrow-left">&larr;</span>
-                            <span class="arrow-right">&rarr;</span>
-                        </div>
-                    </div>
+                <div class="skill-front">
+                    <h3>Cryptography</h3>
+                    <button class="flip-button">Learn More</button>
+                </div>
+                <div class="skill-back">
+                    <h3>Cryptography</h3>
+                    <p>Details about encryption, decryption, and secure communications.</p>
+                    <button class="flip-button">Go Back</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 
     <section id="projects">
@@ -385,30 +387,13 @@
     </footer>
 
     <script>
-    document.querySelectorAll('.learn-more').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
+  document.querySelectorAll('.flip-button').forEach(button => {
+    button.addEventListener('click', function() {
         const skill = this.closest('.skill');
         skill.classList.toggle('flipped');
     });
 });
 
-document.querySelectorAll('.arrow-left, .arrow-right').forEach(arrow => {
-    arrow.addEventListener('click', function() {
-        const content = this.closest('.skill-content');
-        const items = content.querySelectorAll('.more-info');
-        let currentIndex = Array.from(items).findIndex(item => item.style.display !== 'none');
-        items[currentIndex].style.display = 'none';
-        
-        if (this.classList.contains('arrow-right')) {
-            currentIndex = (currentIndex + 1) % items.length;
-        } else {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-        }
-
-        items[currentIndex].style.display = 'block';
-    });
-});
 </script>
 
 
