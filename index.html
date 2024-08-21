@@ -100,149 +100,106 @@
             margin: 0 auto;
         }
 
-        .skills-grid, .project-grid, .experience-grid, .education-grid {
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 40px;
         }
 
-        .skill, .project, .experience, .education {
+        .skill {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            perspective: 1000px;
         }
 
-        .skill:hover, .project:hover, .experience:hover, .education:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        .skill-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955);
         }
 
-        .skill i, .experience i, .education i {
-            font-size: 3em;
-            color: #61dafb;
-            margin-bottom: 10px;
+        .skill.flipped .skill-inner {
+            transform: rotateY(180deg);
         }
 
-        .skill h3, .experience h3, .education h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+        .skill-front, .skill-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
         }
 
-        .project h3 {
+        .skill-front {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skill-front h3 {
             font-size: 1.8em;
             margin-bottom: 15px;
         }
 
-        .project p, .experience p, .education p {
-            font-size: 1em;
-            margin-bottom: 20px;
-        }
-
-        .project a, .skill a {
+        .skill-front button {
             color: #fff;
             background-color: #61dafb;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
+            border: none;
+            cursor: pointer;
             transition: background-color 0.3s ease;
-            display: inline-block;
-            margin-top: 10px;
         }
 
-        .project a:hover, .skill a:hover {
+        .skill-front button:hover {
             background-color: #4d8fb1;
         }
 
-        .contact-info {
-            text-align: center;
+        .skill-back {
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: rotateY(180deg);
+            padding: 20px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .contact-info p {
-            font-size: 1.2em;
-            margin: 10px 0;
+        .skill-back p {
+            font-size: 1em;
+            margin-bottom: 20px;
         }
 
-        .contact-info a {
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100px;
+        }
+
+        .arrow-left, .arrow-right {
+            cursor: pointer;
+            font-size: 1.5em;
             color: #61dafb;
-            text-decoration: none;
-            font-weight: 500;
+            user-select: none;
         }
-
-        footer {
-            background-color: rgba(40, 44, 52, 0.9);
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        .about-text {
-            text-align: center;
-            font-size: 1.2em;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-.skill {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
-
-.skill h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-}
-
-.skill p {
-    font-size: 1em;
-    margin-bottom: 20px;
-}
-
-.skill:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.skill .skill-inner {
-    display: none;
-    text-align: center;
-}
-
-.skill:hover .skill-inner {
-    display: block;
-}
-
-.navigation {
-    margin-top: 10px;
-}
-
-.arrow-left, .arrow-right {
-    cursor: pointer;
-    font-size: 1.5em;
-    margin: 0 10px;
-    color: #61dafb;
-    user-select: none;
-}
-
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Ali BA FAQAS </h1>
+            <h1>Ali BA FAQAS</h1>
             <p>Cybersecurity Professional | Security Analyst | Incident Responder</p>
             <nav>
                 <ul>
@@ -265,76 +222,73 @@
     </section>
 
     <section id="skills">
-    <div class="container">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-            <div class="skill">
-                <h3>Incident Response</h3>
-                <p>Details about incident response and how it's handled.</p>
-                <div class="skill-inner">
-                    <div class="skill-content">
-                        <p class="more-info" data-index="1">More details...</p>
-                        <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
-                        <div class="navigation">
-                            <span class="arrow-left">&larr;</span>
-                            <span class="arrow-right">&rarr;</span>
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <div class="skill-inner">
+                        <div class="skill-front">
+                            <h3>Incident Response</h3>
+                            <button class="learn-more">Learn More</button>
+                        </div>
+                        <div class="skill-back">
+                            <p>Details about incident response and how it's handled.</p>
+                            <p class="more-info" data-index="1" style="display:none;">More details 1...</p>
+                            <p class="more-info" data-index="2" style="display:none;">More details 2...</p>
+                            <div class="navigation">
+                                <span class="arrow-left">&larr;</span>
+                                <span class="arrow-right">&rarr;</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="skill">
-                <h3>Network Security</h3>
-                <p>Details about securing networks, protocols, and configurations.</p>
-                <div class="skill-inner">
-                    <div class="skill-content">
-                        <p class="more-info" data-index="1">More details...</p>
-                        <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
-                        <div class="navigation">
-                            <span class="arrow-left">&larr;</span>
-                            <span class="arrow-right">&rarr;</span>
+
+                <!-- Repeat for other skills -->
+                <div class="skill">
+                    <div class="skill-inner">
+                        <div class="skill-front">
+                            <h3>Network Security</h3>
+                            <button class="learn-more">Learn More</button>
+                        </div>
+                        <div class="skill-back">
+                            <p>Details about securing networks, protocols, and configurations.</p>
+                            <p class="more-info" data-index="1" style="display:none;">More details 1...</p>
+                            <p class="more-info" data-index="2" style="display:none;">More details 2...</p>
+                            <div class="navigation">
+                                <span class="arrow-left">&larr;</span>
+                                <span class="arrow-right">&rarr;</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="skill">
-                <h3>Cryptography</h3>
-                <p>Details about encryption, decryption, and secure communications.</p>
-                <div class="skill-inner">
-                    <div class="skill-content">
-                        <p class="more-info" data-index="1">More details...</p>
-                        <p class="more-info" data-index="2" style="display:none;">Even more details...</p>
-                        <div class="navigation">
-                            <span class="arrow-left">&larr;</span>
-                            <span class="arrow-right">&rarr;</span>
+
+                <div class="skill">
+                    <div class="skill-inner">
+                        <div class="skill-front">
+                            <h3>Penetration Testing</h3>
+                            <button class="learn-more">Learn More</button>
+                        </div>
+                        <div class="skill-back">
+                            <p>Details about finding and exploiting vulnerabilities.</p>
+                            <p class="more-info" data-index="1" style="display:none;">More details 1...</p>
+                            <p class="more-info" data-index="2" style="display:none;">More details 2...</p>
+                            <div class="navigation">
+                                <span class="arrow-left">&larr;</span>
+                                <span class="arrow-right">&rarr;</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Add more skill cards as needed -->
             </div>
         </div>
-    </div>
-</section>
-
-
+    </section>
 
     <section id="projects">
         <div class="container">
             <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project">
-                    <h3>Vulnerability Assessment</h3>
-                    <p>Conducted a comprehensive vulnerability assessment for a financial institution, identifying critical vulnerabilities and providing remediation steps.</p>
-                    <a href="https://github.com/yourusername/project1" target="_blank">View Project</a>
-                </div>
-                <div class="project">
-                    <h3>Incident Response</h3>
-                    <p>Managed the response to a ransomware attack, successfully containing the threat and restoring systems with minimal data loss.</p>
-                    <a href="https://github.com/yourusername/project2" target="_blank">View Project</a>
-                </div>
-                <div class="project">
-                    <h3>Malware Analysis</h3>
-                    <p>Analyzed a sample of ransomware, reverse engineering its code to understand its behavior and develop mitigation strategies.</p>
-                    <a href="https://github.com/yourusername/project3" target="_blank">View Project</a>
-                </div>
+            <div class="projects-grid">
+                <!-- Add project details here -->
             </div>
         </div>
     </section>
@@ -342,12 +296,8 @@
     <section id="experience">
         <div class="container">
             <h2>Experience</h2>
-            <div class="experience-grid">
-                <div class="experience">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Cybersecurity Analyst at XYZ Corp</h3>
-                    <p>Worked on securing corporate networks and conducting regular security audits to ensure compliance with industry standards.</p>
-                </div>
+            <div class="experience-list">
+                <!-- Add experience details here -->
             </div>
         </div>
     </section>
@@ -355,17 +305,8 @@
     <section id="education">
         <div class="container">
             <h2>Education</h2>
-            <div class="education-grid">
-                <div class="education">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Master's in Cybersecurity</h3>
-                    <p>University of Rennes - 2025</p>
-                </div>
-                <div class="education">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Bachelor's in Computer Science</h3>
-                    <p>University of Montpellier - 2023</p>
-                </div>
+            <div class="education-list">
+                <!-- Add education details here -->
             </div>
         </div>
     </section>
@@ -373,44 +314,38 @@
     <section id="contact">
         <div class="container">
             <h2>Contact</h2>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:bafaqas2000@gmail.com">bafaqas2000@gmail.com</a></p>
-                <p>LinkedIn: <a href="www.linkedin.com/in/ali-ba-faqas" target="_blank">www.linkedin.com/in/ali-ba-faqas</a></p>
+            <div class="contact-form">
+                <!-- Add contact form details here -->
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Ali BA FAQAS</p>
-    </footer>
-
     <script>
-    document.querySelectorAll('.learn-more').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        const skill = this.closest('.skill');
-        skill.classList.toggle('flipped');
-    });
-});
+        document.querySelectorAll('.learn-more').forEach(button => {
+            button.addEventListener('click', function() {
+                const skill = this.closest('.skill');
+                skill.classList.toggle('flipped');
+            });
+        });
 
-document.querySelectorAll('.arrow-left, .arrow-right').forEach(arrow => {
-    arrow.addEventListener('click', function() {
-        const content = this.closest('.skill-content');
-        const items = content.querySelectorAll('.more-info');
-        let currentIndex = Array.from(items).findIndex(item => item.style.display !== 'none');
-        items[currentIndex].style.display = 'none';
-        
-        if (this.classList.contains('arrow-right')) {
-            currentIndex = (currentIndex + 1) % items.length;
-        } else {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-        }
+        document.querySelectorAll('.navigation').forEach(nav => {
+            const skillBack = nav.closest('.skill-back');
+            let currentIndex = 0;
+            const details = skillBack.querySelectorAll('.more-info');
+            details[currentIndex].style.display = 'block';
 
-        items[currentIndex].style.display = 'block';
-    });
-});
-</script>
+            nav.querySelector('.arrow-right').addEventListener('click', () => {
+                details[currentIndex].style.display = 'none';
+                currentIndex = (currentIndex + 1) % details.length;
+                details[currentIndex].style.display = 'block';
+            });
 
-
+            nav.querySelector('.arrow-left').addEventListener('click', () => {
+                details[currentIndex].style.display = 'none';
+                currentIndex = (currentIndex - 1 + details.length) % details.length;
+                details[currentIndex].style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
