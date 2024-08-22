@@ -191,40 +191,27 @@
             margin: 0 auto;
         }
 
-.skill-front, .skill-back {
-    backface-visibility: hidden;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s ease;
-}
+    /* Styles for Navigation Arrows */
+    .nav-arrow {
+        font-size: 2em;
+        color: #61dafb;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
 
-.skill-back {
-    transform: rotateY(180deg);
-}
-.skill.flipped .skill-front {
-    transform: rotateY(-180deg);
-}
+    .nav-arrow:hover {
+        transform: scale(1.1);
+    }
 
-.skill.flipped .skill-back {
-    transform: rotateY(0deg);
-}
-
-.flip-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #61dafb;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.flip-button:hover {
-    background-color: #4d8fb1;
-}
+    /* Ensures the skill title is centered and prominent */
+    #skill-title {
+        text-align: center;
+        font-size: 1.8em;
+        margin-top: 10px;
+        color: #333;
+    }
 
 
     </style>
@@ -297,6 +284,10 @@
    <section id="projects">
     <div class="container">
         <h2>Projects</h2>
+        
+        <!-- Dynamic Skill Title -->
+        <h3 id="skill-title">Cryptography</h3>
+        
         <!-- Navigation Arrows -->
         <div class="project-navigation">
             <button class="nav-arrow left-arrow">&#8592;</button>
@@ -331,8 +322,35 @@
             </div>
         </div>
 
-        <!-- Additional skills and their projects go here -->
-        <!-- Example: Network Security, Forensics, etc. -->
+        <!-- Network Security Projects -->
+        <div class="project-grid" data-skill="Network Security">
+            <div class="project">
+                <h3>Network Security Project 1</h3>
+                <p>Designed and implemented a firewall configuration for a multinational corporation.</p>
+                <a href="https://github.com/yourusername/networksecurity1" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Network Security Project 2</h3>
+                <p>Conducted network penetration testing to identify vulnerabilities.</p>
+                <a href="https://github.com/yourusername/networksecurity2" target="_blank">View Project</a>
+            </div>
+        </div>
+
+        <!-- Forensics Projects -->
+        <div class="project-grid" data-skill="Forensics">
+            <div class="project">
+                <h3>Forensics Project 1</h3>
+                <p>Performed digital forensics analysis on a compromised system.</p>
+                <a href="https://github.com/yourusername/forensics1" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Forensics Project 2</h3>
+                <p>Recovered deleted files and investigated data breaches using forensic tools.</p>
+                <a href="https://github.com/yourusername/forensics2" target="_blank">View Project</a>
+            </div>
+        </div>
+
+        <!-- Additional skills and their projects can be added here -->
     </div>
 </section>
 
@@ -371,17 +389,20 @@
         <p>&copy; 2024 Ali BA FAQAS</p>
     </footer>
 
-  <script>
+<script>
     // JavaScript for navigating between project groups by skill
     const skillGroups = document.querySelectorAll('.project-grid');
     const leftArrow = document.querySelector('.left-arrow');
     const rightArrow = document.querySelector('.right-arrow');
+    const skillTitle = document.getElementById('skill-title');
     let currentSkillIndex = 0;
 
     function showSkillGroup(index) {
         skillGroups.forEach((group, i) => {
             group.style.display = i === index ? 'grid' : 'none';
         });
+        // Update the skill title based on the current skill
+        skillTitle.textContent = skillGroups[index].getAttribute('data-skill');
     }
 
     leftArrow.addEventListener('click', () => {
