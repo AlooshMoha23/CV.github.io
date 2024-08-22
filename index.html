@@ -294,41 +294,50 @@
         </div>
     </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project">
-                    <h3>Vulnerability Assessment</h3>
-                    <p>Conducted a comprehensive vulnerability assessment for a financial institution, identifying critical vulnerabilities and providing remediation steps.</p>
-                    <a href="https://github.com/yourusername/project1" target="_blank">View Project</a>
-                </div>
-                <div class="project">
-                    <h3>Incident Response</h3>
-                    <p>Managed the response to a ransomware attack, successfully containing the threat and restoring systems with minimal data loss.</p>
-                    <a href="https://github.com/yourusername/project2" target="_blank">View Project</a>
-                </div>
-                <div class="project">
-                    <h3>Malware Analysis</h3>
-                    <p>Analyzed a sample of ransomware, reverse engineering its code to understand its behavior and develop mitigation strategies.</p>
-                    <a href="https://github.com/yourusername/project3" target="_blank">View Project</a>
-                </div>
-            </div>
+   <section id="projects">
+    <div class="container">
+        <h2>Projects</h2>
+        <!-- Navigation Arrows -->
+        <div class="project-navigation">
+            <button class="nav-arrow left-arrow">&#8592;</button>
+            <button class="nav-arrow right-arrow">&#8594;</button>
         </div>
-    </section>
 
-    <section id="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="experience-grid">
-                <div class="experience">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Cybersecurity Analyst at XYZ Corp</h3>
-                    <p>Worked on securing corporate networks and conducting regular security audits to ensure compliance with industry standards.</p>
-                </div>
+        <!-- Cryptography Projects -->
+        <div class="project-grid" data-skill="Cryptography">
+            <div class="project">
+                <h3>Cryptography Project 1</h3>
+                <p>Implemented a secure encryption algorithm to protect sensitive data.</p>
+                <a href="https://github.com/yourusername/cryptography1" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Cryptography Project 2</h3>
+                <p>Analyzed the security of different cryptographic protocols.</p>
+                <a href="https://github.com/yourusername/cryptography2" target="_blank">View Project</a>
             </div>
         </div>
-    </section>
+
+        <!-- Incident Response Projects -->
+        <div class="project-grid" data-skill="Incident Response">
+            <div class="project">
+                <h3>Incident Response Project 1</h3>
+                <p>Managed the response to a data breach, minimizing the impact.</p>
+                <a href="https://github.com/yourusername/incidentresponse1" target="_blank">View Project</a>
+            </div>
+            <div class="project">
+                <h3>Incident Response Project 2</h3>
+                <p>Developed a comprehensive incident response plan for a large corporation.</p>
+                <a href="https://github.com/yourusername/incidentresponse2" target="_blank">View Project</a>
+            </div>
+        </div>
+
+        <!-- Additional skills and their projects go here -->
+        <!-- Example: Network Security, Forensics, etc. -->
+    </div>
+</section>
+
+
+
 
     <section id="education">
         <div class="container">
@@ -362,14 +371,31 @@
         <p>&copy; 2024 Ali BA FAQAS</p>
     </footer>
 
-    <script>
-  document.querySelectorAll('.flip-button').forEach(button => {
-    button.addEventListener('click', function() {
-        const skill = this.closest('.skill');
-        skill.classList.toggle('flipped');
-    });
-});
+  <script>
+    // JavaScript for navigating between project groups by skill
+    const skillGroups = document.querySelectorAll('.project-grid');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+    let currentSkillIndex = 0;
 
+    function showSkillGroup(index) {
+        skillGroups.forEach((group, i) => {
+            group.style.display = i === index ? 'grid' : 'none';
+        });
+    }
+
+    leftArrow.addEventListener('click', () => {
+        currentSkillIndex = (currentSkillIndex > 0) ? currentSkillIndex - 1 : skillGroups.length - 1;
+        showSkillGroup(currentSkillIndex);
+    });
+
+    rightArrow.addEventListener('click', () => {
+        currentSkillIndex = (currentSkillIndex < skillGroups.length - 1) ? currentSkillIndex + 1 : 0;
+        showSkillGroup(currentSkillIndex);
+    });
+
+    // Initially show the first skill group
+    showSkillGroup(currentSkillIndex);
 </script>
 
 
